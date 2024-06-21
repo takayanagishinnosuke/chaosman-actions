@@ -1,0 +1,40 @@
+const core = require('@actions/core');
+const github = require('@actions/github');
+const openai = require("openai");
+
+async function run() {
+  try {
+    const githubToken = core.getInput('github-token');
+    const openaiApiKey = core.getInput('openai-api-key');
+    const customPrompt = core.getInput('prompt');
+
+    const octokit = github.getOctokit(githubToken);
+    const client = new openai.OpenAI(openaiApiKey);
+
+    const context = github.context;
+    const pull_number = context.payload.pull_request.number;
+    const { data: pullRequest } = await octokit.rest.pulls.get({
+      ...context.repo,
+      pull_number,
+    });
+
+    const prompt = `${customPrompt}\n\nPull Request Title: ${pullRequest.title}\nDescription: ${pullRequest.body}`;
+    const completion = await client.cat.completion.create({
+      model: "gpt-3.5-turbo",
+      prompt:  [{ role: "system", content: prompt}],
+      max_tokens: 150
+    });
+    const generatedComment = completion.choices[0]?.message?.content;
+    await octokit.rest.issues.createComment({
+      ...context.repo,
+      issue_number: pull_number,
+      body: generatedComment,
+    });
+
+    console.log('Comment posted successfully');
+  } catch (error) {
+    core.setFailed(error.message);
+  }
+}
+
+run();

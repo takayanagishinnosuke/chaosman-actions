@@ -1,0 +1,16 @@
+name: 'GPT-3.5 PR Commenter'
+description: 'Generates and posts comments on pull requests using OpenAI GPT-3.5'
+inputs:
+  github-token:
+    description: 'GitHub token for authentication'
+    required: true
+  openai-api-key:
+    description: 'OpenAI API Key'
+    required: true
+  prompt:
+    description: 'Custom prompt for GPT-3.5'
+    required: true
+    default: 'Analyze this pull request and provide a concise summary:'
+runs:
+  using: 'node20'
+  main: './dist/index.js'
