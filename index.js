@@ -21,7 +21,7 @@ async function run() {
     const prompt = `${customPrompt}\n\nPull Request Title: ${pullRequest.title}\nDescription: ${pullRequest.body}`;
     const completion = await client.chat.completions.create({
       model: "gpt-3.5-turbo",
-      prompt:  [{ role: "user", content: prompt}],
+      messages:  [{ role: "system", content: prompt}],
       max_tokens: 150
     });
     const generatedComment = completion.choices[0]?.message?.content;
