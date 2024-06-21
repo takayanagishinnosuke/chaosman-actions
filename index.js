@@ -9,7 +9,7 @@ async function run() {
     const customPrompt = core.getInput('prompt');
 
     const octokit = github.getOctokit(githubToken);
-    const client = new openai.OpenAI(openaiApiKey);
+    const client = new openai.OpenAI({ apiKey: openaiApiKey });
 
     const context = github.context;
     const pull_number = context.payload.pull_request.number;
