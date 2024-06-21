@@ -1,38 +1,44 @@
 <header>
 
-<!--
-  <<< Author notes: Course header >>>
-  Include a 1280×640 image, course name in sentence case, and a concise description in emphasis.
-  In your repository settings: enable template repository, add your 1280×640 social image, auto delete head branches.
-  Next to "About", add description & tags; disable releases, packages, & environments.
-  Add your open source license, GitHub uses MIT license.
--->
-
 # ChaosMan Actions
 
-Haha!!!!
+This action is just to generate comments with a generative AI!
+It is triggered by a pull request!HaHa!!!!
 
 </header>
 
-<!--
-  <<< Author notes: Finish >>>
-  Review what we learned, ask for feedback, provide next steps.
--->
+## Use the action
 
-## Finish
+<img src=https://mypublicbucket-fhaifhac45725.s3.ap-northeast-1.amazonaws.com/main_logo.jpg alt=celebrate width=200 align=right>
 
-<img src=https://octodex.github.com/images/poptocat_v2.png alt=celebrate width=300 align=right>
+### It's easy to use!!
 
-### Congratulations, you've completed this course!
+1. Settings -> Actions -> General -> Workflow permissions -> Read and write permissions
 
-In this course, you've learned a lot about developing custom actions using JavaScript and Actions Toolkit.
+2. Settings -> Seacrets and variables -> Actions -> New repository secret -> Name: `OPENAI_API_KEY` -> Value: `your-openai-api-key`
 
-## Publishing your actions
+3. Create a `.github/workflows/workflow.yml`
 
-### What's next?
+file in your repository with the following content:
 
-<footer>
+```yaml
+on:
+  pull_request:
+    types: [opened, reopened]
 
----
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: PR Commenter
+        uses: takayanagishinnosuke/chaosman-actions@v0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt: 'このプルリクストを解析してユーザーの元気を無くす一言を返してください。'
+```
 
-</footer>
+4. Create a pull request and see the magic happen! HaHa!!!!
+
+<footer></footer>
