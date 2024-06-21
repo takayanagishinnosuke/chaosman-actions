@@ -1,4 +1,4 @@
-name: GPT PR Commenter
+name: PR Commenter
 
 on:
   pull_request:
@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: GPT PR Commenter
+      - name: PR Commenter
         uses: ./
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
-          prompt: "Analyze this pull request and provide a concise summary with suggestions for improvement:"
+          prompt: "このプルリクエストを分析し、元気に励ますようなコメントを返します。"

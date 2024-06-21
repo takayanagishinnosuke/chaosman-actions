@@ -1,4 +1,4 @@
-name: 'GPT-3.5 PR Commenter'
+name: 'Generation Comments'
 description: 'Generates and posts comments on pull requests using OpenAI GPT-3.5'
 inputs:
   github-token:
@@ -10,7 +10,7 @@ inputs:
   prompt:
     description: 'Custom prompt for GPT-3.5'
     required: true
-    default: 'Analyze this pull request and provide a concise summary:'
+    default: 'このプルリクエストを分析し、簡潔にコメントを返します。'
 runs:
   using: 'node20'
   main: './dist/index.js'
