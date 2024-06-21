@@ -4,9 +4,9 @@ const openai = require("openai");
 
 async function run() {
   try {
-    const githubToken = core.getInput('github-token');
-    const openaiApiKey = core.getInput('openai-api-key');
-    const customPrompt = core.getInput('prompt');
+    const githubToken = core.getInput('github-token', { required: true});
+    const openaiApiKey = core.getInput('openai-api-key', { required: true});
+    const customPrompt = core.getInput('prompt', { required: true});
 
     const octokit = github.getOctokit(githubToken);
     const client = new openai.OpenAI({ apiKey: openaiApiKey });
