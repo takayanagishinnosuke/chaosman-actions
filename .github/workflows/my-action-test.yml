@@ -1,4 +1,4 @@
-name: PR Commenter
+name: PR Comment and Build
 
 on:
   pull_request:
@@ -14,4 +14,29 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
-          prompt: "このプルリクエストを分析し、元気に励ますようなコメントを返します。"
+          prompt: "このプルリクエストを分析し、元気に励ますようなコメントを日本語で返してください。"
+  
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - run: npm ci
+
+      - name: Build
+        run: npx ncc build index.js -o dist
+
+      - name: Commit changes
+        run: |
+          git add dist/
+          git commit -m "Build and push changes"
+      
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.head_ref }}
