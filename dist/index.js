@@ -48614,7 +48614,7 @@ async function run() {
       pull_number,
     });
 
-    const prompt = `${customPrompt}\n\nPull Request Title: ${pullRequest.title}\nDescription: ${pullRequest.body}`;
+    const prompt = `##Order\n${customPrompt}\n##Pull Request Title: ${pullRequest.title}\n##Description: ${pullRequest.body}`;
     const completion = await client.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages:  [{ role: "system", content: prompt}],
