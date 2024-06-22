@@ -3,7 +3,7 @@
 # ChaosMan Actions
 
 This action is just to generate comments with a generative AI!
-It is triggered by a pull request!HaHa!!!!
+It is triggered by a pull request! HaHa!!!!
 
 </header>
 
