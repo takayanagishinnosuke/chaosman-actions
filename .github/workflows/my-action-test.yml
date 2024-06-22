@@ -36,8 +36,12 @@ jobs:
           npx ncc build index.js -o dist
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add dist/index.js
-          git commit -m "Build and push changes"
+          git add dist/
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "Build and push changes"
+          else
+            echo "No changes to commit"
+          fi
       
       - name: Push changes
         uses: ad-m/github-push-action@master
