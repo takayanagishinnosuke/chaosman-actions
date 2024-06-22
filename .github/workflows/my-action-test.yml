@@ -21,18 +21,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
       - run: npm ci
 
-      - name: Build
-        run: npx ncc build index.js -o dist
-
-      - name: Commit changes
+      - name: Build and Commit
         run: |
+          npx ncc build index.js -o dist
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add dist/index.js
