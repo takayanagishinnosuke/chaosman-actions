@@ -1,4 +1,4 @@
-name: PR Comment and Build
+name: Build
 
 on:
   pull_request:
