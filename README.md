@@ -2,20 +2,23 @@
 
 # ChaosMan Actions
 
-This action is just to generate comments with a generative AI!
-It is triggered by a pull request! HaHa!!!!
+This action does the worst thing a developer can do!
+
+It is triggered by a pull request!
+
+HaHaHa!!!!
+
+<img src=https://mypublicbucket-fhaifhac45725.s3.ap-northeast-1.amazonaws.com/main_logo.jpg alt=celebrate width=200 align=right>
 
 </header>
 
 ## Use the action
 
-<img src=https://mypublicbucket-fhaifhac45725.s3.ap-northeast-1.amazonaws.com/main_logo.jpg alt=celebrate width=200 align=right>
-
 ### It's easy to use!!
 
 1. Settings -> Actions -> General -> Workflow permissions -> Read and write permissions
 
-2. Settings -> Seacrets and variables -> Actions -> New repository secret -> Name: `OPENAI_API_KEY` -> Value: `your-openai-api-key`
+2. Settings -> Seacrets and variables -> Actions -> New repository secret -> Name: `OPENAI_API_KEY` -> Value: your-openai-api-key
 
 3. Create a `.github/workflows/workflow.yml`
 
