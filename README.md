@@ -35,7 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: PR Commenter
-        uses: takayanagishinnosuke/chaosman-actions@v0
+        uses: takayanagishinnosuke/chaosman-actions@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
