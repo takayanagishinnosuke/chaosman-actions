@@ -1,5 +1,5 @@
-name: 'Generation Comments'
-description: 'Generates and posts comments on pull requests using OpenAI GPT-3.5'
+name: 'Generation Chaos'
+description: 'Generates and posts comments and pull requests Files delete'
 inputs:
   github-token:
     description: 'GitHub token for authentication'

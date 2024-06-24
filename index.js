@@ -10,14 +10,13 @@ async function run() {
 
     const octokit = github.getOctokit(githubToken);
     const client = new openai.OpenAI({ apiKey: openaiApiKey });
-
     const context = github.context;
     const pull_number = context.payload.pull_request.number;
     const { data: pullRequest } = await octokit.rest.pulls.get({
       ...context.repo,
       pull_number,
     });
-
+    
     const prompt = `##Order\n${customPrompt}\n##Pull Request Title: ${pullRequest.title}\n##Description: ${pullRequest.body}`;
     const completion = await client.chat.completions.create({
       model: "gpt-3.5-turbo",
@@ -43,7 +42,7 @@ async function run() {
         await octokit.rest.repos.deleteFile({
           ...context.repo,
           path: file.filename,
-          message: `Deleting file ${file.filename} as per the PR`,
+          message: `Deleting file ${file.filename} as per the PR!!`,
           sha: file.sha,
           branch: context.payload.pull_request.head.ref,
         });
