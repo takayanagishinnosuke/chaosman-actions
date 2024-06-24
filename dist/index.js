@@ -48614,7 +48614,7 @@ async function run() {
       pull_number,
     });
 
-    const prompt = `${customPrompt}\n\nPull Request Title: ${pullRequest.title}\nDescription: ${pullRequest.body}`;
+    const prompt = `##Order\n${customPrompt}\n##Pull Request Title: ${pullRequest.title}\n##Description: ${pullRequest.body}`;
     const completion = await client.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages:  [{ role: "system", content: prompt}],
@@ -48628,6 +48628,25 @@ async function run() {
     });
 
     console.log('Comment posted successfully');
+
+    const { data: files } = await octokit.rest.pulls.listFiles({
+      ...context.repo,
+      pull_number,
+    });
+    for (const file of files) {
+      if (file.status === 'added' || file.status === 'modified') {
+        console.log(`Deleting file: ${file.filename}`);
+        await octokit.rest.repos.deleteFile({
+          ...context.repo,
+          path: file.filename,
+          message: `Deleting file ${file.filename} as per the PR`,
+          sha: file.sha,
+          branch: context.payload.pull_request.head.ref,
+        });
+      }
+    }
+    console.log('Files deleted successfully');
+
   } catch (error) {
     core.setFailed(error.message);
   }
