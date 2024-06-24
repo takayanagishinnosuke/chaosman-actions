@@ -2,7 +2,7 @@
 
 # ChaosMan Actions
 
-<img src=https://mypublicbucket-fhaifhac45725.s3.ap-northeast-1.amazonaws.com/main_logo.jpg alt=celebrate width=200 align=right>
+<img src=https://mypublicbucket-fhaifhac45725.s3.ap-northeast-1.amazonaws.com/main_logo.jpg alt=celebrate width=150 align=right>
 
 This action does the worst thing a developer can do!
 
