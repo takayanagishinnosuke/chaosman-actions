@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: PR Commenter
+      - name: ChaosMan Actions
         uses: takayanagishinnosuke/chaosman-actions@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
